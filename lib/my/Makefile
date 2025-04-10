@@ -13,7 +13,7 @@ OBJ = $(SRC:.c=.o)
 
 NAME = libmy.a
 
-CFLAGS = -g3 -Werror -Wall -Wextra -I ../../include
+CFLAGS = -g -ggdb -Werror -Wall -Wextra -I ../../include
 
 all: $(NAME)
 

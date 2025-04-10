@@ -5,7 +5,6 @@
 #include "my.h"
 #include "bonus.h"
 
-
 void setupSquare(unsigned int* VAO, float *vertices, size_t size)
 {
     unsigned int indices[] = {
@@ -13,7 +12,7 @@ void setupSquare(unsigned int* VAO, float *vertices, size_t size)
         2, 3, 0
     };
     unsigned int VBO = 0;
-    unsigned int EBO;
+    unsigned int EBO = 0;
 
     glGenVertexArrays(1, VAO);
     glGenBuffers(1, &VBO);
