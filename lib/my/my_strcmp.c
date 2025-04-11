@@ -1,18 +1,23 @@
 /*
 ** EPITECH PROJECT, 2024
-** my_strcmp
+** minishell
 ** File description:
-** jj
+** strcmp
 */
 
-#include <stdlib.h>
-
-int my_strcmp(char const *s1, char const *s2)
+#include "amazed.h"
+int my_strcmp(char *src, char *cmp)
 {
-    for (int i = 0; s1[i] != '\0' || s2[i] != '\0'; i++) {
-        if (s1[i] != s2[i]){
-            return s1[i] - s2[i];
-        }
+    int i = 0;
+
+    if (!src || !cmp)
+        return 0;
+    if (my_strlen(src) != my_strlen(cmp))
+        return 0;
+    while (src[i] != '\0') {
+        if (src[i] != cmp[i])
+            return 0;
+        i++;
     }
-    return 0;
+    return 1;
 }

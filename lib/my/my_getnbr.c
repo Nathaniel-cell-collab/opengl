@@ -1,61 +1,57 @@
 /*
 ** EPITECH PROJECT, 2024
-** my_get_number
+** my_get_nbr
 ** File description:
-** get a number in a string
+** lalaa
 */
 
-#include <limits.h>
-#include "my.h"
+#include "amazed.h"
 
-int char_isdigit(char a)
+int get_sign(char const *str)
 {
-    if (a >= 48 && a <= 57){
-        return 1;
+    int i = 0;
+    int mo = 1;
+
+    while (str[i] < '0' || str[i] > '9') {
+        if (str[i] == '-') {
+            mo = mo * -1;
+        }
+        i = i + 1;
     }
-    return 0;
+    return mo;
 }
 
-int skip(char const *str, int p)
+int count(char const *str)
 {
-    while (str[p] != '\0') {
-        if (str[p] == '-' && char_isdigit(str[p + 1]) == 1) {
-            return p;
+    int i = 0;
+    int mo = 0;
+
+    while (str[i] < '0' || str[i] > '9') {
+        if (str[i] == '-' || str[i] == '+') {
+            mo = mo + 1;
         }
-        if (char_isdigit(str[p]) == 1) {
-            return p;
-        }
-        p++;
+        i = i + 1;
     }
-    return p;
+    return mo;
 }
 
-int write_nbr(int p, char const *str)
+int my_getnbr(char const *str)
 {
     int nbr = 0;
-    int sign = 1;
+    int mo = get_sign(str);
+    int y = 0;
+    int counter = count(str);
+    int i = counter;
 
-    if (str[p] == '-'){
-        sign = -1;
-        p++;
+    while (str[i] >= '0' && str[i] <= '9') {
+        nbr = nbr * 10 + (str[i] - '0');
+        i = i + 1;
+        y = 1;
     }
-    while (char_isdigit(str[p]) == 1){
-        nbr = nbr * 10 + (str[p] - '0');
-        p += 1;
-    }
-    nbr = nbr *sign;
-    if (nbr < 0)
-        return -1;
-    return nbr;
-}
-
-int my_getnbr(char const *str, int p)
-{
-    int my_nbr = 0;
-
-    p = skip(str, p);
-    if (p == my_strlen(str))
-        return -1;
-    my_nbr = write_nbr(p, str);
-    return my_nbr;
+    if (str[i] < '0' || (str[i] > '9' && y == 1))
+        return nbr * mo;
+    else if (str[i] < '0' || (str[i] > '9' && y == 0))
+        return 0;
+    i = i + 1;
+    return 0;
 }

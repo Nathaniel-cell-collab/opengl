@@ -1,31 +1,31 @@
 /*
-** EPITECH PROJECT, 2024
-** my_put_nbr
+** EPITECH PROJECT, 2025
+** minishell1
 ** File description:
-** jsp
+** machin
 */
-#include "my.h"
 
-int my_put_nbr(int nb)
+#include "amazed.h"
+
+void my_putchar(char c)
 {
-    int i = 0;
-    int j = 1;
-
-    if (nb < 0) {
-        nb = -nb;
-        i += my_putchar('-');
-    }
-    while ((nb / j) > 9) {
-        j *= 10;
-    }
-    while (j > 0) {
-        i += my_putchar('0' + (nb / j) % 10);
-        j /= 10;
-    }
-    return i;
+    write(1, &c, 1);
 }
 
-int my_put_nbr_va(va_list list, ...)
+void my_put_nbr(int nb)
 {
-    return my_put_nbr(va_arg(list, int));
+    int y = 1;
+
+    if (nb < 0) {
+        my_putchar('-');
+        nb = -nb;
+    }
+    while (nb / y >= 10) {
+        y = y * 10;
+    }
+    while (y != 1) {
+        my_putchar(48 + (nb / y) % 10);
+        y = y / 10;
+    }
+    my_putchar(48 + nb % 10);
 }

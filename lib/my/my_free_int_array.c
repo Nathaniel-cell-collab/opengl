@@ -6,7 +6,7 @@
 */
 
 #include "amazed.h"
-void my_free_array(char **array)
+void my_free_int_array(int **array)
 {
     if (!array)
         return;

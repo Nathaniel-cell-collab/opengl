@@ -2,7 +2,6 @@
 #include <GLFW/glfw3.h>
 #include <stdio.h>
 #include <stdbool.h>
-#include "my.h"
 
 unsigned int createShaderProgram(void)
 {
@@ -16,9 +15,10 @@ unsigned int createShaderProgram(void)
         "}\0";
     const char* fragmentShaderSource = "#version 330 core\n"
         "out vec4 FragColor;\n"
+        "uniform vec4 uColor;\n"
         "void main()\n"
         "{\n"
-        "   FragColor = vec4(1.0, 0.0, 0.0, 1.0);\n"
+        "    FragColor = uColor;\n"
         "}\0";
 
     unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);

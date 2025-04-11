@@ -1,22 +1,13 @@
 /*
-** EPITECH PROJECT, 2024
-** my_strlen
+** EPITECH PROJECT, 2025
+** minishell
 ** File description:
-** jsp
+** my_putstr
 */
-#include "my.h"
 
-int my_putstr(char *str)
+#include "amazed.h"
+
+int my_putstr(char *str, int out)
 {
-    int i = 0;
-
-    for (i = 0; str[i] != '\0'; i++) {
-        my_putchar(str[i]);
-    }
-    return i;
-}
-
-int my_putstr_va(va_list list, ...)
-{
-    return my_putstr(va_arg(list, char *));
+    return write(out, str, my_strlen(str));
 }

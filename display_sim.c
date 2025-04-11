@@ -13,17 +13,31 @@ void clear_screen(void)
     glClear(GL_COLOR_BUFFER_BIT);
 }
 
-void drawAllRooms(sim_t *sim)
+void drawAllRooms(sim_t *sim, int colorLoc)
 {
+    glUniform4f(colorLoc, 1.0f, 0.0f, 0.0f, 1.0f);
     for (int i = 0; i < sim->map->nb_room; i++) {
-        glUseProgram(sim->shaderProgam);
         glBindVertexArray(sim->map->rooms[i]->VAO);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
     }
 }
 
+void drawAllRobots(sim_t *sim, int colorLoc)
+{
+    glUniform4f(colorLoc, 0.0f, 1.0f, 0.0f, 1.0f);
+    for (int i = 0; i < sim->map->nb_robot; i++) {
+        glBindVertexArray(sim->map->robots[i]->VAO);
+        glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
+    }
+}
+
 void display_sim(sim_t *sim)
 {
-    drawAllRooms(sim);
+    int colorLoc = 0;
+    glUseProgram(sim->shaderProgam);
+    colorLoc = glGetUniformLocation(sim->shaderProgam, "uColor");
+    drawAllRooms(sim, colorLoc);
+    if ((sim->map->robots))
+        drawAllRobots(sim, colorLoc);
     glfwSwapBuffers(sim->window);
 }
